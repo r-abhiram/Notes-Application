@@ -25,6 +25,17 @@ class Api::V1::NotesController < ApplicationController
     end
   end
 
+  def update
+    begin
+      @note = Note.find(params[:id])
+      @note.content = updated_content
+      @note.save
+      render json: {data: @note, success: true}, status: :ok
+    rescue ActiveRecord::RecordNotFound => e
+      render json: {data: "Note not found", success: false}, status: :not_found
+    end 
+  end
+
   def destroy
     begin
       @note = Note.find(params[:id])
@@ -41,4 +52,7 @@ class Api::V1::NotesController < ApplicationController
     params.require(:note).permit(:title, :content)
   end
 
+  def updated_content
+    params.require(:content)
+  end
 end

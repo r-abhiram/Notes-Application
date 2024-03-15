@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import UpdateNote from "./UpdateNote";
 
 const Note = () => {
   const currLocation = useRef(window.location.pathname);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ title: "", content: "" });
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState("");
 
@@ -31,10 +32,16 @@ const Note = () => {
             <div className="container-fluid py-3">
               <div className="head-container d-flex justify-content-between">
                 <h3 className="display-7 fw-bold">{data.title}</h3>
-                <button className="btn btn-primary" type="button">
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
                   <i className="bi bi-pencil me-2"></i>Update
                 </button>
               </div>
+              <UpdateNote note={data} />
               <p className="fs-6 my-4">{data.content}</p>
             </div>
           </div>

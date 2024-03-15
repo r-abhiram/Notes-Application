@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import UpdateNote from "./UpdateNote";
 
 const NoteDetail = (params) => {
   const truncateWords = () => {
