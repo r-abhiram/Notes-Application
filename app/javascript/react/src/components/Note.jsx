@@ -42,7 +42,9 @@ const Note = () => {
                 </button>
               </div>
               <UpdateNote note={data} />
-              <p className="fs-6 my-4">{data.content}</p>
+              <p className="fs-6 my-4" style={{ overflowWrap: "break-word" }}>
+                {data.content}
+              </p>
             </div>
           </div>
         </div>

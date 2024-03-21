@@ -36,7 +36,9 @@ const NoteDetail = (params) => {
               <i className="bi bi-trash3"></i>
             </button>
           </div>
-          <p className="fs-6 my-4">{truncateWords()}</p>
+          <p className="fs-6 my-4" style={{ overflowWrap: "break-word" }}>
+            {truncateWords()}
+          </p>
           <Link to={"/note/" + params.note.id}>
             <button className="btn btn-primary" type="button">
               See more...
