@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import UpdateNote from "./UpdateNote";
+import { format } from "timeago.js";
 
 const NoteDetail = (params) => {
   const truncateWords = () => {
@@ -26,7 +27,12 @@ const NoteDetail = (params) => {
       <div className="p-4 mt-3 mb-2 bg-body-tertiary rounded-3">
         <div className="container-fluid py-3">
           <div className="d-flex justify-content-between">
-            <h3 className="display-7 fw-bold">{params.note.title}</h3>
+            <div className="container p-0 d-flex align-items-center">
+              <h3 className="display-7 fw-bold me-3">{params.note.title}</h3>
+              <p className="fw-lighter fs-6 text-sm m-0">
+                {format(params.note.created_at)}
+              </p>
+            </div>
             <button
               className="btn btn-danger"
               type="button"
