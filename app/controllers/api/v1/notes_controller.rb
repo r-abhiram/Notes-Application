@@ -8,6 +8,7 @@ class Api::V1::NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+    puts note_params
     if @note.save
       render json: {data: @note, success: true}, status: :ok
     else
@@ -49,7 +50,7 @@ class Api::V1::NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title, :content)
+    params.require(:note).permit(:title, :content, :img)
   end
 
   def updated_content

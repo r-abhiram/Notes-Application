@@ -2,12 +2,13 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import UpdateNote from "./UpdateNote";
+import Header from "./Header";
 
 const Note = () => {
   const currLocation = useRef(window.location.pathname);
-  const [data, setData] = useState({ title: "", content: "" });
+  const [data, setData] = useState({ title: "", content: "", img: "" });
   const [isError, setIsError] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState([]);
 
   useEffect(() => {
     const fetchNote = async () => {
@@ -15,8 +16,8 @@ const Note = () => {
       try {
         const res = await axios.get(`http://localhost:3000/api/v1/note/${id}`);
         setData(res.data.data);
+        console.log(res.data.data);
       } catch (err) {
-        console.log(err);
         setIsError(true);
         setError(err.response.data.data);
       }
@@ -26,6 +27,7 @@ const Note = () => {
 
   return (
     <div>
+      <Header />
       {!isError ? (
         <div className="container">
           <div className="p-4 mt-3 mb-2 bg-body-tertiary rounded-3">
@@ -43,6 +45,7 @@ const Note = () => {
               </div>
               <UpdateNote note={data} />
               <p className="fs-6 my-4">{data.content}</p>
+              {data.img && <img src={data.img} />}
             </div>
           </div>
         </div>

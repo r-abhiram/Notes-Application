@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const UpdateNote = (props) => {
-  console.log(props.note.content);
   const [updatedContent, setUpdatedContent] = useState("");
 
   useEffect(() => {
@@ -16,7 +15,6 @@ const UpdateNote = (props) => {
           `http://localhost:3000/api/v1/note/${props.note.id}`,
           { content: updatedContent }
         );
-        console.log(res.data);
         window.location.reload();
       } else {
       }
@@ -24,8 +22,6 @@ const UpdateNote = (props) => {
       console.log(err);
     }
   };
-
-  console.log(updatedContent);
 
   return (
     <div>

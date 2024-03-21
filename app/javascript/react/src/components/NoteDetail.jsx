@@ -15,7 +15,6 @@ const NoteDetail = (params) => {
       const res = await axios.delete(
         `http://localhost:3000/api/v1/destroy/${params.note.id}`
       );
-      console.log(res.data);
       window.location.reload();
     } catch (err) {
       console.log(err);
